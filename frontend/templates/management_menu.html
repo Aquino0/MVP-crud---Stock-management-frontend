@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Menu</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #d3d3d3; /* Fundo cinza claro */
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #a9a9a9; /* Caixa principal cinza escuro */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 1200px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #fff;
+            text-align: center;
+        }
+        nav {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        nav button {
+            background-color: #000000; /* Botões pretos */
+            color: white;
+            border: none;
+            padding: 20px 40px; /* Aumenta o tamanho do botão */
+            margin: 10px;
+            border-radius: 8px;
+            font-size: 20px; /* Aumenta o tamanho da fonte */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        nav button:hover {
+            background-color: #333333; /* Preto mais escuro ao passar o mouse */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td {
+            border: 1px solid #000;
+            padding: 20px; /* Aumenta o padding das células da tabela */
+            text-align: left;
+        }
+        table th {
+            background-color: #333333; /* Cabeçalho da tabela em preto */
+            color: #fff;
+        }
+        table td img {
+            width: 150px; /* Aumenta o tamanho da imagem */
+            height: auto;
+        }
+        .options-buttons {
+            display: flex;
+            justify-content: center; /* Centraliza os botões horizontalmente */
+            gap: 10px; /* Espaçamento entre os botões */
+        }
+        .options-buttons button {
+            background-color: #000000; /* Botões pretos */
+            color: white;
+            border: none;
+            padding: 20px 40px; /* Aumenta o tamanho do botão */
+            border-radius: 8px;
+            font-size: 18px; /* Aumenta o tamanho da fonte */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 150px; /* Largura fixa para os botões */
+            text-align: center; /* Alinhamento do texto dentro do botão */
+        }
+        .options-buttons button:hover {
+            background-color: #333333; /* Preto mais escuro ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Management Menu</h1>
+        <nav>
+            <button onclick="window.location.href='{{ url_for('create_dish') }}'">Create Dish</button>
+            <button onclick="window.location.href='{{ url_for('index') }}'">Back to Home</button> <!-- Botão para voltar para a página principal -->
+        </nav>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Ilustration</th>
+                    <th>Options</th> <!-- Alterado de "Actions" para "Options" -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for dish in dishes %}
+                <tr>
+                    <td>{{ dish[1] }}</td>
+                    <td>{{ dish[2] }}</td>
+                    <td>${{ dish[3] }}</td>
+                    <td>
+                        {% if dish[4] %}
+                        <img src="{{ url_for('static', filename=dish[4].replace('\\', '/').replace('static/', '')) }}" alt="Image of {{ dish[1] }}">
+                        {% else %}
+                        No image
+                        {% endif %}
+                    </td>
+                    <td class="options-buttons">
+                        <form action="{{ url_for('delete_dish', id=dish[0]) }}" method="POST" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                        <a href="{{ url_for('change_dish', id=dish[0]) }}">
+                            <button>Change</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
