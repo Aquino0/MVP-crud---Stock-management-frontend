@@ -1,10 +1,4 @@
-título: dish and order site
--um projeto simples para gerenciar o cardápio e a comanda de um restaurante
-
-instruções de configuração do ambiente:
--nada precisa ser configurado
-
-como usar:
--para inicializar o projeto, clique duas vezes em "app.py"
--depois vá até http://127.0.0.1:5000/index
--caso necessário, deixe o link ou crie um qrcode que leve até a pagina "view_menu" para que os clientes possam vê-lo
+titulo: Stock management program - frontend
+descrição: o frontend do projeto feito para o trabalho de MVP crud
+instruções de instalação: é necessário colocar a pasta deste projeto dentro da pasta deste outro (link)
+logo em seguida, ir até "app.py" e executa-lo, os dois caminhos do projeto são http://127.0.0.1:5000/home para o projeto e http://127.0.0.1:5000/swagger para ver a api
