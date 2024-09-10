@@ -108,7 +108,7 @@
 
     <div id="add-product-form" class="form-container" style="display: none;">
         <h2>Add Product</h2>
-        <form onsubmit="addProduct(event)">
+        <form id="product-form" onsubmit="addProduct(event)">
             <input type="text" id="name" placeholder="Name" required>
             <input type="text" id="category" placeholder="Category" required>
             <input type="number" id="price" placeholder="Price" step="0.01" required>
@@ -137,7 +137,7 @@
         });
 
         function fetchProducts() {
-            fetch('/api/products')
+            fetch('http://127.0.0.1:5000/products')
                 .then(response => response.json())
                 .then(products => {
                     const productList = document.getElementById('product-list');
@@ -176,7 +176,7 @@
             const price = document.getElementById('price').value;
             const quantity = document.getElementById('quantity').value;
 
-            fetch('/api/products', {
+            fetch('http://127.0.0.1:5000/products/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -186,7 +186,7 @@
             .then(response => {
                 if (response.ok) {
                     fetchProducts();
-                    document.getElementById('add-product-form').reset();
+                    document.getElementById('product-form').reset();
                     hideAddProductForm();
                 } else {
                     console.error('Error adding product:', response.statusText);
@@ -217,7 +217,7 @@
             const price = document.getElementById('edit-price').value;
             const quantity = document.getElementById('edit-quantity').value;
 
-            fetch(`/api/products/${id}`, {
+            fetch(`http://127.0.0.1:5000/products/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -236,7 +236,7 @@
         }
 
         function deleteProduct(id) {
-            fetch(`/api/products/${id}`, {
+            fetch(`http://127.0.0.1:5000/products/${id}`, {
                 method: 'DELETE'
             })
             .then(response => {
