@@ -13,6 +13,9 @@
             flex-direction: column;
             align-items: center;
             background-color: #f0f0f0; /* Cinza claro */
+            background-image: url('bg.jpg');
+            background-size: cover;
+        
         }
         h1 {
             color: #333; /* Cinza escuro */
@@ -53,7 +56,7 @@
         }
         form {
             display: flex;
-            flex-direction: column;
+            flex-direction: ;
             align-items: center;
             background-color: #fff;
             padding: 20px;
@@ -88,17 +91,17 @@
     </style>
 </head>
 <body>
-    <h1>Stock Management</h1>
-    <button onclick="showAddProductForm()">Add Product</button>
+    <h1>Gestão de Estoque</h1>
+    <button onclick="showAddProductForm()">Adicionar Produtos</button>
     <table id="product-table">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Actions</th>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Valor</th>
+                <th>Quantidade</th>
+                <th>Ação</th>
             </tr>
         </thead>
         <tbody id="product-list">
@@ -107,28 +110,28 @@
     </table>
 
     <div id="add-product-form" class="form-container" style="display: none;">
-        <h2>Add Product</h2>
+        <h2>Adicionar Produtos</h2>
         <form id="product-form" onsubmit="addProduct(event)">
-            <input type="text" id="name" placeholder="Name" required>
-            <input type="text" id="category" placeholder="Category" required>
-            <input type="number" id="price" placeholder="Price" step="0.01" required>
-            <input type="number" id="quantity" placeholder="Quantity" required>
-            <button type="submit">Add Product</button>
+            <input type="text" id="name" placeholder="Nome" required>
+            <input type="text" id="category" placeholder="Categoria" required>
+            <input type="number" id="price" placeholder="Preço" step="0.01" required>
+            <input type="number" id="quantity" placeholder="Quantidade" required>
+            <button type="submit">Adicionar Produtos</button>
         </form>
-        <button onclick="hideAddProductForm()">Cancel</button>
+        <button onclick="hideAddProductForm()">Cancelar</button>
     </div>
 
     <div id="edit-product-form" class="form-container" style="display: none;">
-        <h2>Edit Product</h2>
+        <h2>Editar Produtos</h2>
         <form onsubmit="updateProduct(event)">
             <input type="hidden" id="edit-id">
-            <input type="text" id="edit-name" placeholder="Name" required>
-            <input type="text" id="edit-category" placeholder="Category" required>
-            <input type="number" id="edit-price" placeholder="Price" step="0.01" required>
-            <input type="number" id="edit-quantity" placeholder="Quantity" required>
-            <button type="submit">Update Product</button>
+            <input type="text" id="edit-name" placeholder="Nome" required>
+            <input type="text" id="edit-category" placeholder="Categoria" required>
+            <input type="number" id="edit-price" placeholder="Preço" step="0.01" required>
+            <input type="number" id="edit-quantity" placeholder="Quantidade" required>
+            <button type="submit">Adicionar Produtos</button>
         </form>
-        <button onclick="hideEditProductForm()">Cancel</button>
+        <button onclick="hideEditProductForm()">Cancelar</button>
     </div>
 
     <script>
